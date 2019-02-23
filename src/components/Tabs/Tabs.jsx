@@ -10,12 +10,12 @@ class TabsCоmponent extends Component {
     return (
       <Tabs>
         <TabList>
-          <Tab>Title 1</Tab>
-          <Tab disabled>Title 2</Tab>
-          <Tab>Title 3</Tab>
-          <Tab>Title 4</Tab>
-          <Tab>Title 5</Tab>
-          <Tab>Title 6</Tab>
+          <Tab data-test="tab-item">Title 1</Tab>
+          <Tab data-test="tab-item">Title 2</Tab>
+          <Tab data-test="tab-item">Title 3</Tab>
+          <Tab data-test="tab-item">Title 4</Tab>
+          <Tab data-test="tab-item">Title 5</Tab>
+          <Tab data-test="tab-item">Title 6</Tab>
         </TabList>
 
         <TabPanel>
