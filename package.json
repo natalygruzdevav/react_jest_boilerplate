@@ -6,13 +6,21 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server --mode development --open --hot",
-    "build": "npm test && webpack --mode production"
+    "build": "npm test && webpack --mode production",
+    "lint": "eslint \"**/*.{js,jsx}\""
   },
   "jest": {
     "setupFilesAfterEnv": [
       "jest-enzyme"
     ],
-    "testEnvironment": "enzyme"
+    "testEnvironment": "enzyme",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "importSort": {
     ".js, .jsx": {
@@ -46,7 +54,13 @@
     "webpack-dev-server": "^3.2.0"
   },
   "dependencies": {
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "react-dom": "^16.8.2",
+    "react-tabs": "^3.0.0"
   }
 }
