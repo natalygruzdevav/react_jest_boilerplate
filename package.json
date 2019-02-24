@@ -54,19 +54,25 @@
     "webpack-dev-server": "^3.2.0"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-eslint": "^10.0.1",
+    "babel-polyfill": "^6.26.0",
     "debug": "^4.1.1",
+    "delay": "^4.1.0",
     "eslint": "^5.14.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "fs": "^0.0.1-security",
     "js-cookie": "^2.2.0",
+    "nock": "^10.0.6",
     "node-inspect": "^1.11.5",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-log-state": "^0.1.0",
     "react-tabs": "^3.0.0",
+    "rss-parser": "^3.6.2",
     "uniqid": "^5.0.3"
   }
 }
