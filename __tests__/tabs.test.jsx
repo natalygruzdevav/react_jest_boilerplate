@@ -1,20 +1,42 @@
-import React from 'react';
-import { mount } from 'enzyme';
+import React from "react";
+import { mount } from "enzyme";
 
-import App from '../src/components/App';
+import App from "../src/components/App";
 
-describe('Tabs', () => {
-  it('render', () => {
+describe("Tabs", () => {
+  it("add tab", () => {
     const wrapper = mount(<App />);
-    expect(wrapper.render()).toMatchSnapshot();
+    const tabsCount = wrapper.find('li[data-test="tab-item"]').length;
+    const buttonAdd = wrapper.find('button[data-test="add"]');
+    buttonAdd.simulate("click");
+    const tabsBox = wrapper.find('div[data-test="box"]');
+    expect(tabsBox).toContainMatchingElements(
+      tabsCount + 1,
+      'li[data-test="tab-item"]'
+    );
   });
 
-  it('click tab', () => {
+  it("remove tab", () => {
     const wrapper = mount(<App />);
-    wrapper
-      .find('[data-test="tab-item"]')
-      .at(4)
-      .simulate('click');
-    expect(wrapper.render()).toMatchSnapshot();
+    const tabsCount = wrapper.find('li[data-test="tab-item"]').length;
+    const buttonRemove = wrapper.find('button[data-test="remove"]');
+    buttonRemove.simulate("click");
+    const tabsBox = wrapper.find('div[data-test="box"]');
+    expect(tabsBox).toContainMatchingElements(
+      tabsCount - 1,
+      'li[data-test="tab-item"]'
+    );
+  });
+
+  it("change tab", () => {
+    const wrapper = mount(<App />);
+    const tabsCount = wrapper.find('li[data-test="tab-item"]').length;
+    const buttonRemove = wrapper.find('button[data-test="remove"]');
+    buttonRemove.simulate("click");
+    const tabsBox = wrapper.find('div[data-test="box"]');
+    expect(tabsBox).toContainMatchingElements(
+      tabsCount - 1,
+      'li[data-test="tab-item"]'
+    );
   });
 });

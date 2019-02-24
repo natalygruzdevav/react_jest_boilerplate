@@ -1,42 +1,60 @@
-import React, { Component } from 'react';
-import {
-  Tab, Tabs, TabList, TabPanel,
-} from 'react-tabs';
+import React, { Component } from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import uniqid from "uniqid";
 
-import 'react-tabs/style/react-tabs.css';
+import "react-tabs/style/react-tabs.css";
 
 class TabsCоmponent extends Component {
+  state = {
+    tabs: [
+      { id: uniqid(), title: "Title 1", content: "Any content 1" },
+      { id: uniqid(), title: "Title 2", content: "Any content 2" },
+      { id: uniqid(), title: "Title 3", content: "Any content 3" },
+      { id: uniqid(), title: "Title 4", content: "Any content 4" },
+      { id: uniqid(), title: "Title 5", content: "Any content 5" }
+    ]
+  };
+
+  renderTabLink = () =>
+    this.state.tabs.map(tab => (
+      <Tab key={tab.id} data-test='tab-item'>
+        {tab.title}
+      </Tab>
+    ));
+
+  renderTabContent = () =>
+    this.state.tabs.map(tab => (
+      <TabPanel key={tab.id}>
+        <h2>{tab.content}</h2>
+        <button data-test="remove" onClick={() => this.handleClickRemoveTab(tab.id)} type='button'>Remove tab</button>
+      </TabPanel>
+    ));
+
+  handleClickNewTab = () => {
+    this.setState({
+      tabs: [
+        ...this.state.tabs,
+        { id: uniqid(), title: "Title ", content: "Any content" }
+      ]
+    });
+  };
+  handleClickRemoveTab = (id) => {
+    this.setState(state => ({
+      ...state,
+      tabs: state.tabs.filter(tab => tab.id !== id),
+    }));
+  };
   render() {
     return (
-      <Tabs>
-        <TabList>
-          <Tab data-test="tab-item">Title 1</Tab>
-          <Tab data-test="tab-item">Title 2</Tab>
-          <Tab data-test="tab-item">Title 3</Tab>
-          <Tab data-test="tab-item">Title 4</Tab>
-          <Tab data-test="tab-item">Title 5</Tab>
-          <Tab data-test="tab-item">Title 6</Tab>
-        </TabList>
-
-        <TabPanel>
-          <h2>Any content 1</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 2</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 3</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 4</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 5</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 6</h2>
-        </TabPanel>
-      </Tabs>
+      <div data-test="box">
+        <button data-test="add" onClick={this.handleClickNewTab} type='button'>
+          Add tab
+        </button>
+        <Tabs>
+          <TabList>{this.renderTabLink()}</TabList>
+          {this.renderTabContent()}
+        </Tabs>
+      </div>
     );
   }
 }
